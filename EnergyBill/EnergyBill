@@ -1,0 +1,43 @@
+public class EnergyBill {
+    // Attributes
+    private String name;
+    private String address;
+    private double electricityUsage; // in kWh
+    private double gasUsage; // in units
+
+    // Constants for rates
+    private static final double ELECTRICITY_RATE = 0.12; // $ per kWh
+    private static final double GAS_RATE = 0.09; // $ per unit
+
+    // Constructor
+    public EnergyBill(String name, String address, double electricityUsage, double gasUsage) {
+        this.name = name;
+        this.address = address;
+        this.electricityUsage = electricityUsage;
+        this.gasUsage = gasUsage;
+    }
+
+    // Method to calculate electricity charge
+    public double calculateElectricityCharge() {
+        return electricityUsage * ELECTRICITY_RATE;
+    }
+
+    // Method to calculate gas charge
+    public double calculateGasCharge() {
+        return gasUsage * GAS_RATE;
+    }
+
+    // Method to calculate total charge
+    public double calculateTotalCharge() {
+        return calculateElectricityCharge() + calculateGasCharge();
+    }
+
+    // toString method to display bill details
+    @Override
+    public String toString() {
+        return "EnergyBill for " + name + "\nAddress: " + address +
+               "\nElectricity Usage: " + electricityUsage + " kWh" +
+               "\nGas Usage: " + gasUsage + " units" +
+               "\nTotal Charge: $" + calculateTotalCharge();
+    }
+}

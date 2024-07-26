@@ -1,0 +1,29 @@
+public class GreenEnergyBill extends EnergyBill {
+    // Additional attribute for solar contribution
+    private double solarContribution; // in kWh
+
+    // Constants for solar energy deduction
+    private static final double SOLAR_DEDUCTION = 0.10; // $ per kWh
+
+    // Constructor
+    public GreenEnergyBill(String name, String address, double electricityUsage, double gasUsage, double solarContribution) {
+        super(name, address, electricityUsage, gasUsage);
+        this.solarContribution = solarContribution;
+    }
+
+    // Override method to calculate electricity charge with solar contribution
+    @Override
+    public double calculateElectricityCharge() {
+        double originalCharge = super.calculateElectricityCharge();
+        double solarSavings = solarContribution * SOLAR_DEDUCTION;
+        return originalCharge - solarSavings;
+    }
+
+    // toString method to display bill details
+    @Override
+    public String toString() {
+        return super.toString() +
+               "\nSolar Contribution: " + solarContribution + " kWh" +
+               "\nAdjusted Total Charge: $" + calculateTotalCharge();
+    }
+}
